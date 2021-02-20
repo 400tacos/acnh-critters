@@ -18,6 +18,16 @@ a {
     color: lightblue;
 }
 
+/* Choose Critter Type */
+#buttons {
+    margin-bottom: 1em;
+}
+
+/* Critter Table */
+#fish {
+    width: 95%;
+}
+
 #month {
     color: white;
     font-weight: bold;
