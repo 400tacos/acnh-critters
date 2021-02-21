@@ -7,7 +7,7 @@
 5 - time
 6-16 - months
 */
-var allFish = [
+const allFish = [
     [1, "Bitterling", "900", "River", "1", "All day", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
     [2, "Pale chub", "200", "River", "1", "9 AM - 4 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
     [3, "Crucian carp", "160", "River", "2", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
@@ -98,7 +98,7 @@ var allFish = [
 4 - time
 5-16 - months
 */
-var allBugs = [
+const allBugs = [
     [1, "Common butterfly", "160", "Flying", "4 AM - 7 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "(X)"],
     [2, "Yellow butterfly", "160", "Flying", "4 AM - 7 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "-", "-"],
     [3, "Tiger butterfly", "240", "Flying", "4 AM - 7 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
@@ -181,7 +181,7 @@ var allBugs = [
     [80, "Scorpion", "8000", "On the Ground", "7 PM - 4 AM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"]
 ];
 
-var allDeep = [
+const allDeep = [
     [1, "Seaweed", "NH-Icon-seaweed.png", "600", "Large", "Stationary", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)"],
     [2, "Sea grapes", "NH-Icon-seagrapes.png", "900", "Small", "Stationary", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
     [3, "Sea cucumber", "NH-Icon-seacucumber.png", "500", "Medium", "Slow consistent movement", "All day", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
@@ -224,18 +224,18 @@ var allDeep = [
     [40, "Venus flower basket", "NH-Icon-venusflowerbasket.png", "5,000", "Medium", "Quick long lunges", "All day", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)"]
 ];
 
+var currentMonth = new Date().getMonth();
+var currentHours = new Date().getHours();
+
 var allCritters = [];
 var monthOffset = 6;
-var currentMonth = new Date().getMonth();
 var submitType = "fish";
 
-var fishTable = document.getElementById("fishTable");
-var bugTable = document.getElementById("bugTable");
-var deepTable = document.getElementById("deepTable");
-var monthMenu = document.getElementById("monthMenu");
-
-var selectedColor = "lightgray";
-var currentHours = new Date().getHours();
+const fishTable = document.getElementById("fishTable");
+const bugTable = document.getElementById("bugTable");
+const deepTable = document.getElementById("deepTable");
+const monthMenu = document.getElementById("monthMenu");
+const selectedColor = "lightgray";
 
 var myCritters = [];
 var neededCritters = [];
@@ -358,6 +358,7 @@ function generateSelectionTable(table, type, limit) {
             let text = document.createTextNode(critterName);
             td.appendChild(text);
             td.id = type + col;
+            td.classList.add(type);
         }
     }
 }
@@ -390,87 +391,11 @@ function imgOf(critter) {
 }
 
 function addListeners(type) {
-    document.getElementById(type + 0).addEventListener('click', bindClick(type,0));
-    document.getElementById(type + 1).addEventListener('click', bindClick(type,1));
-    document.getElementById(type + 2).addEventListener('click', bindClick(type,2));
-    document.getElementById(type + 3).addEventListener('click', bindClick(type,3));
-    document.getElementById(type + 4).addEventListener('click', bindClick(type,4));
-    document.getElementById(type + 5).addEventListener('click', bindClick(type,5));
-    document.getElementById(type + 6).addEventListener('click', bindClick(type,6));
-    document.getElementById(type + 7).addEventListener('click', bindClick(type,7));
-    document.getElementById(type + 8).addEventListener('click', bindClick(type,8));
-    document.getElementById(type + 9).addEventListener('click', bindClick(type,9));
-    document.getElementById(type + 10).addEventListener('click', bindClick(type,10));
-    document.getElementById(type + 11).addEventListener('click', bindClick(type,11));
-    document.getElementById(type + 12).addEventListener('click', bindClick(type,12));
-    document.getElementById(type + 13).addEventListener('click', bindClick(type,13));
-    document.getElementById(type + 14).addEventListener('click', bindClick(type,14));
-    document.getElementById(type + 15).addEventListener('click', bindClick(type,15));
-    document.getElementById(type + 16).addEventListener('click', bindClick(type,16));
-    document.getElementById(type + 17).addEventListener('click', bindClick(type,17));
-    document.getElementById(type + 18).addEventListener('click', bindClick(type,18));
-    document.getElementById(type + 19).addEventListener('click', bindClick(type,19));
-    document.getElementById(type + 20).addEventListener('click', bindClick(type,20));
-    document.getElementById(type + 21).addEventListener('click', bindClick(type,21));
-    document.getElementById(type + 22).addEventListener('click', bindClick(type,22));
-    document.getElementById(type + 23).addEventListener('click', bindClick(type,23));
-    document.getElementById(type + 24).addEventListener('click', bindClick(type,24));
-    document.getElementById(type + 25).addEventListener('click', bindClick(type,25));
-    document.getElementById(type + 26).addEventListener('click', bindClick(type,26));
-    document.getElementById(type + 27).addEventListener('click', bindClick(type,27));
-    document.getElementById(type + 28).addEventListener('click', bindClick(type,28));
-    document.getElementById(type + 29).addEventListener('click', bindClick(type,29));
-    document.getElementById(type + 30).addEventListener('click', bindClick(type,30));
-    document.getElementById(type + 31).addEventListener('click', bindClick(type,31));
-    document.getElementById(type + 32).addEventListener('click', bindClick(type,32));
-    document.getElementById(type + 33).addEventListener('click', bindClick(type,33));
-    document.getElementById(type + 34).addEventListener('click', bindClick(type,34));
-    document.getElementById(type + 35).addEventListener('click', bindClick(type,35));
-    document.getElementById(type + 36).addEventListener('click', bindClick(type,36));
-    document.getElementById(type + 37).addEventListener('click', bindClick(type,37));
-    document.getElementById(type + 38).addEventListener('click', bindClick(type,38));
-    document.getElementById(type + 39).addEventListener('click', bindClick(type,39));
-    if (type == "deep") return; // Exit if deep sea
-    document.getElementById(type + 40).addEventListener('click', bindClick(type,40));
-    document.getElementById(type + 41).addEventListener('click', bindClick(type,41));
-    document.getElementById(type + 42).addEventListener('click', bindClick(type,42));
-    document.getElementById(type + 43).addEventListener('click', bindClick(type,43));
-    document.getElementById(type + 44).addEventListener('click', bindClick(type,44));
-    document.getElementById(type + 45).addEventListener('click', bindClick(type,45));
-    document.getElementById(type + 46).addEventListener('click', bindClick(type,46));
-    document.getElementById(type + 47).addEventListener('click', bindClick(type,47));
-    document.getElementById(type + 48).addEventListener('click', bindClick(type,48));
-    document.getElementById(type + 49).addEventListener('click', bindClick(type,49));
-    document.getElementById(type + 50).addEventListener('click', bindClick(type,50));
-    document.getElementById(type + 51).addEventListener('click', bindClick(type,51));
-    document.getElementById(type + 52).addEventListener('click', bindClick(type,52));
-    document.getElementById(type + 53).addEventListener('click', bindClick(type,53));
-    document.getElementById(type + 54).addEventListener('click', bindClick(type,54));
-    document.getElementById(type + 55).addEventListener('click', bindClick(type,55));
-    document.getElementById(type + 56).addEventListener('click', bindClick(type,56));
-    document.getElementById(type + 57).addEventListener('click', bindClick(type,57));
-    document.getElementById(type + 58).addEventListener('click', bindClick(type,58));
-    document.getElementById(type + 59).addEventListener('click', bindClick(type,59));
-    document.getElementById(type + 60).addEventListener('click', bindClick(type,60));
-    document.getElementById(type + 61).addEventListener('click', bindClick(type,61));
-    document.getElementById(type + 62).addEventListener('click', bindClick(type,62));
-    document.getElementById(type + 63).addEventListener('click', bindClick(type,63));
-    document.getElementById(type + 64).addEventListener('click', bindClick(type,64));
-    document.getElementById(type + 65).addEventListener('click', bindClick(type,65));
-    document.getElementById(type + 66).addEventListener('click', bindClick(type,66));
-    document.getElementById(type + 67).addEventListener('click', bindClick(type,67));
-    document.getElementById(type + 68).addEventListener('click', bindClick(type,68));
-    document.getElementById(type + 69).addEventListener('click', bindClick(type,69));
-    document.getElementById(type + 70).addEventListener('click', bindClick(type,70));
-    document.getElementById(type + 71).addEventListener('click', bindClick(type,71));
-    document.getElementById(type + 72).addEventListener('click', bindClick(type,72));
-    document.getElementById(type + 73).addEventListener('click', bindClick(type,73));
-    document.getElementById(type + 74).addEventListener('click', bindClick(type,74));
-    document.getElementById(type + 75).addEventListener('click', bindClick(type,75));
-    document.getElementById(type + 76).addEventListener('click', bindClick(type,76));
-    document.getElementById(type + 77).addEventListener('click', bindClick(type,77));
-    document.getElementById(type + 78).addEventListener('click', bindClick(type,78));
-    document.getElementById(type + 79).addEventListener('click', bindClick(type,79));
+    let limit = 40;
+    if (type != "deep") limit = 80;
+    for (let i = 0; i < limit; i++) {
+        document.querySelector(`#${type+i}`).onclick = bindClick(type,i);
+    }
 }
 
 function bindClick(type, i) {
