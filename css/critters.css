@@ -139,3 +139,8 @@ li:hover {
     transition: max-height 0.2s ease-out;
     border: 1px solid darkgray;
 }
+
+footer {
+    margin-top: 1rem;
+    text-align: center;
+}
