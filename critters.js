@@ -631,6 +631,8 @@ function generateOutputTableBody() {
             // Check if months col
             let lastCol = false;
             if (submitType == "bug" && col == 6) lastCol = true;
+            else if (col == 7) lastCol = true;
+
             if (lastCol && months.endsWith("month!")) {
                 //console.log(allCritters[thisCritter][1] + " leaving soon.");
                 td.style.backgroundColor = "darkred";
@@ -699,18 +701,9 @@ function generateMonthSelector() {
 
 // Time-related functions
 function addMonthListeners() {
-    document.getElementById("month" + 0).addEventListener('click', setMonth(0));
-    document.getElementById("month" + 1).addEventListener('click', setMonth(1));
-    document.getElementById("month" + 2).addEventListener('click', setMonth(2));
-    document.getElementById("month" + 3).addEventListener('click', setMonth(3));
-    document.getElementById("month" + 4).addEventListener('click', setMonth(4));
-    document.getElementById("month" + 5).addEventListener('click', setMonth(5));
-    document.getElementById("month" + 6).addEventListener('click', setMonth(6));
-    document.getElementById("month" + 7).addEventListener('click', setMonth(7));
-    document.getElementById("month" + 8).addEventListener('click', setMonth(8));
-    document.getElementById("month" + 9).addEventListener('click', setMonth(9));
-    document.getElementById("month" + 10).addEventListener('click', setMonth(10));
-    document.getElementById("month" + 11).addEventListener('click', setMonth(11));
+    for (let i = 0; i < 12; i++) {
+        document.querySelector(`#month${i}`).onclick = setMonth(i);
+    }
 }
 
 function setMonth(month) {
