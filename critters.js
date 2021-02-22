@@ -513,7 +513,6 @@ function checkTime(name, hours) {
 }
 
 function setHemisphere(hemisphere) {
-   
     if (hemisphere === "north") {
         allFish = northFish;
         allBugs = northBugs;
@@ -527,4 +526,6 @@ function setHemisphere(hemisphere) {
         document.querySelector("#north").style.backgroundColor = "#6c757d";
         document.querySelector("#south").style.backgroundColor = "#28a745";
     }
+    // Update span in header
+    document.querySelector("#hemisphere").innerHTML = hemisphere + "ern";
 }
