@@ -252,20 +252,16 @@ function makeSelectionTables() {
     setBackgrounds("fish", allFish.length);
     addListeners("fish");
 
-    // Load fish selections from localstorage
-    //checkIfFishStored();
-
     // Create bug selection table
     generateSelectionTable(bugTable, "bug", allBugs.length);
     setBackgrounds("bug", allBugs.length);
     addListeners("bug");
 
-    // Load bug selections from localstorage
-    //checkIfBugsStored();
-
     generateSelectionTable(deepTable, "deep", allDeep.length);
     setBackgrounds("deep", allDeep.length);
     addListeners("deep");
+
+    checkLocalStorage();
 }
 
 function fishMode() {
@@ -288,7 +284,6 @@ function deepMode() {
     deepTable.hidden = false;
     submitType = "deep";
 }
-
 
 var coll = document.getElementsByClassName("collapsible");
 for (i = 0; i < coll.length; i++) {
@@ -346,7 +341,9 @@ function checkMonth(month) {
 function generateSelectionTable(table, type, limit) {
     if (type == "fish") allCritters = allFish;
     else if (type == "bug") allCritters = allBugs;
-    else if (type == "deep") {allCritters = allDeep;}
+    else if (type == "deep") {
+        allCritters = allDeep;
+    }
 
     for (var row = 0; row < 5; row++) {
         let thisRow = table.insertRow();
@@ -364,7 +361,6 @@ function generateSelectionTable(table, type, limit) {
 }
 
 function setBackgrounds(type, limit) {
-
     for (var i = 0; i < limit; i++) {
         // Get critter name
         let critterName = allCritters[i][1];
@@ -394,7 +390,7 @@ function addListeners(type) {
     let limit = 40;
     if (type != "deep") limit = 80;
     for (let i = 0; i < limit; i++) {
-        document.querySelector(`#${type+i}`).onclick = bindClick(type,i);
+        document.querySelector(`#${type+i}`).onclick = bindClick(type, i);
     }
 }
 
@@ -406,14 +402,14 @@ function bindClick(type, i) {
         if (button.style.backgroundColor == selectedColor) { // If button already selected
             button.style.backgroundColor = "black";
             for (rem = 0; rem < myCritters.length; rem++) {
-                if (myCritters[rem] == type+i) {
+                if (myCritters[rem] == type + i) {
                     myCritters.splice(rem, 1);
                     sortCritters();
                 }
             }
         } else { // If button not selected
             button.style.backgroundColor = selectedColor;
-            myCritters.push(type+i);
+            myCritters.push(type + i);
             console.log(myCritters);
             sortCritters();
         }
@@ -428,30 +424,46 @@ function sortCritters() {
 }
 
 
-function checkIfFishStored() {
-    if (localStorage.getItem("myFish") === null) {
-        console.log("No fish stored.");
+function checkLocalStorage() {
+    if (!localStorage.getItem("myCritters")) {
+        console.log("Nothing stored.");
     } else {
-        console.log("Found fish...");
-        parseStored(localStorage.myFish, "fish");
+        console.log("Found stuff!");
+        let critters = localStorage.getItem("myCritters");
+        parseStored(critters);
     }
 }
 
-function checkIfBugsStored() {
-    if (localStorage.getItem("myBugs") === null) {
-        console.log("No bugs stored.");
-    } else {
-        console.log("Found bugs...");
-        parseStored(localStorage.myBugs, "bug");
-    }
-}
-
-function parseStored(crittersString, type) {
+function parseStored(critters) {
     // Splits loaded data into a temporary array
-    console.log(crittersString);
-    let tempArray = crittersString.split(",");
+    console.log(critters);
+    let tempArray = critters.split(",");
 
-    // Pushes everything from the temporary array
+    for (item in tempArray) {
+        let critter = tempArray[item];
+        let type;
+
+        if (critter.includes("fish")) {
+            type = "fish";
+        } else if (critter.includes("bug")) {
+            type = "bug";
+        } else if (critter.includes("deep")) {
+            type = "deep";
+        }
+
+        critter = critter.replace(type, "");
+        console.log(type + critter);
+
+        myCritters.push(type + critter);
+        console.log(myCritters);
+        sortCritters();
+
+        // Colors the box
+        let button = document.getElementById(type + critter);
+        button.style.backgroundColor = selectedColor;
+    }
+
+    /* Pushes everything from the temporary array
     for (i = 0; i < tempArray.length; i++) {
         let newCritter = parseInt(tempArray[i]);
         if (isNaN(newCritter) == false) {
@@ -466,6 +478,7 @@ function parseStored(crittersString, type) {
             button.style.backgroundColor = selectedColor;
         }
     }
+    */
 }
 
 // Run when user does some action
@@ -474,17 +487,9 @@ function clickBox() {
     saveChoices();
 }
 
-function saveChoices(type) {
+function saveChoices() {
     let str = myCritters.toString();
-
-    // Logs submitted fish and saves them to local storage
-    if (type == "fish") {
-        localStorage.myFish = str;
-        console.log("Submitted: " + str);
-    } else {
-        localStorage.myBugs = str;
-        console.log("Submitted: " + str);
-    }
+    localStorage.setItem("myCritters", str);
 }
 
 function getNeededCritters() {
@@ -493,16 +498,23 @@ function getNeededCritters() {
     neededCritters = [];
 
     // Set arrays and monthOffset
-    if (submitType == "fish") {allCritters = allFish; monthOffset = 6;}
-    else if (submitType == "bug")  {allCritters = allBugs; monthOffset = 5;}
-    else if (submitType == "deep")  {allCritters = allDeep; monthOffset = 7;}
+    if (submitType == "fish") {
+        allCritters = allFish;
+        monthOffset = 6;
+    } else if (submitType == "bug") {
+        allCritters = allBugs;
+        monthOffset = 5;
+    } else if (submitType == "deep") {
+        allCritters = allDeep;
+        monthOffset = 7;
+    }
 
     for (i = 0; i < allCritters.length; i++) {
         if (myCritters.includes(submitType + i)) {
             console.log("Already have " + allCritters[i][1]);
         } // Checks the column associated with this month 
         else if (allCritters[i][currentMonth + monthOffset] == "(X)") {
-            neededCritters.push(submitType+i);
+            neededCritters.push(submitType + i);
         } else {
             //console.log(allCritters[i][1] + " needed, but not currently available.");
         }
@@ -554,9 +566,9 @@ function generateOutputTableBody() {
     for (var row = 0; row < neededCritters.length; row++) {
         // Makes Row
         let thisCritter = neededCritters[row];
-        thisCritter = thisCritter.replace("fish","");
-        thisCritter = thisCritter.replace("bug","");
-        thisCritter = thisCritter.replace("deep","");
+        thisCritter = thisCritter.replace("fish", "");
+        thisCritter = thisCritter.replace("bug", "");
+        thisCritter = thisCritter.replace("deep", "");
         let thisRow = outputTable.insertRow();
         let number, name, image, value, loc, hours, months;
         let size = 0;
@@ -608,20 +620,23 @@ function generateOutputTableBody() {
                 td.style.backgroundImage = imgOf(name);
             }
 
-            // Check if col to highlight
+            // Check if times col
+            let timeCol = false;
+            if (submitType == "bug" && col == 5) timeCol = true;
+            else if (col == 6) timeCol = true;
+            if (timeCol && hours.endsWith("*")) {
+                td.style.backgroundColor = "darkgreen";
+            }
+
+            // Check if months col
             let lastCol = false;
             if (submitType == "bug" && col == 6) lastCol = true;
-            else if (col == 7) lastCol = true;
-
-            // Highlights
             if (lastCol && months.endsWith("month!")) {
                 //console.log(allCritters[thisCritter][1] + " leaving soon.");
                 td.style.backgroundColor = "darkred";
             } else if (lastCol && months.endsWith("month.")) {
                 //console.log(allCritters[thisCritter][1] + " new.");
                 td.style.backgroundColor = "darkblue";
-            } else if (lastCol && hours.endsWith("*")) {
-                td.style.backgroundColor = "darkgreen";
             }
         }
     }
@@ -644,10 +659,7 @@ function printMonths(critter) {
 
     if (output == "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec") {
         return "All months";
-    }
-    
-    
-    else if ((allCritters[critter][currentMonth + monthOffset] == "(X)") &&
+    } else if ((allCritters[critter][currentMonth + monthOffset] == "(X)") &&
         (allCritters[critter][currentMonth + monthOffset + 1] == "-")) {
         output += ". This critter is leaving next month!";
         return output;
@@ -658,7 +670,7 @@ function printMonths(critter) {
     } else {
         return output;
     }
-    
+
 }
 
 function deleteFish() {
