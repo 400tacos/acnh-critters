@@ -1,228 +1,6 @@
-/* allFish indexes
-0 - number
-1 - name
-2 - value
-3 - location
-4 - size
-5 - time
-6-16 - months
-*/
-const allFish = [
-    [1, "Bitterling", "900", "River", "1", "All day", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [2, "Pale chub", "200", "River", "1", "9 AM - 4 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [3, "Crucian carp", "160", "River", "2", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [4, "Dace", "192", "River", "3", "4 PM - 9 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [5, "Carp", "300", "Pond", "4", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [6, "Koi", "4000", "Pond", "4", "4 PM - 9 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [7, "Goldfish", "1300", "Pond", "1", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [8, "Pop-eyed goldfish", "1300", "Pond", "1", "9 AM - 4 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [9, "Ranchu goldfish", "4500", "Pond", "2", "9 AM - 4 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [10, "Killifish", "300", "Pond", "1", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [11, "Crawfish", "200", "Pond", "2", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [12, "Soft-shelled turtle", "3750", "River", "4", "4 PM - 9 AM", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-"],
-    [13, "Snapping Turtle", "5000", "River", "5", "9 PM - 4 AM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [14, "Tadpole", "100", "Pond", "1", "All day", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-"],
-    [15, "Frog", "120", "Pond", "2", "All day", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [16, "Freshwater goby", "400", "River", "2", "4 PM - 9 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [17, "Loach", "400", "River", "2", "All day", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-"],
-    [18, "Catfish", "800", "Pond", "4", "4 PM - 9 AM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [19, "Giant snakehead", "5500", "Pond", "5", "9 AM - 4 PM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [20, "Bluegill", "180", "River", "2", "9 AM - 4 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [21, "Yellow perch", "300", "River", "3", "All day", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)"],
-    [22, "Black bass", "320", "River", "4", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [23, "Tilapia", "800", "River", "3", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [24, "Pike", "1800", "River", "5", "All day", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [25, "Pond smelt", "500", "River", "2", "All day", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "-", "(X)"],
-    [26, "Sweetfish", "900", "River", "3", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [27, "Cherry salmon", "800", "River (Clifftop)", "3", "4 PM - 9 AM", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [28, "Char", "3800", "River (Clifftop) and Pond", "3", "4 PM - 9 AM", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [29, "Golden trout", "15000", "River (Clifftop)", "3", "4 PM - 9 AM", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [30, "Stringfish", "15000", "River (Clifftop)", "5", "4 PM - 9 AM", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "(X)"],
-    [31, "Salmon", "700", "River (Mouth)", "4", "All day", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "-", "-", "-"],
-    [32, "King salmon", "1800", "River (Mouth)", "6", "All day", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "-", "-", "-"],
-    [33, "Mitten crab", "2000", "River", "2", "4 PM - 9 AM", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [34, "Guppy", "1300", "River", "1", "9 AM - 4 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [35, "Nibble fish", "1500", "River", "1", "9 AM - 4 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [36, "Angelfish", "3000", "River", "2", "4 PM - 9 AM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [37, "Betta", "2500", "River", "2", "9 AM - 4 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [38, "Neon tetra", "500", "River", "1", "9 AM - 4 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [39, "Rainbowfish", "800", "River", "1", "9 AM - 4 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [40, "Piranha", "2500", "River", "2", "9 AM - 4 PM & 9 PM - 4 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [41, "Arowana", "10000", "River", "4", "4 PM - 9 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [42, "Dorado", "15000", "River", "5", "4 AM - 9 PM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [43, "Gar", "6000", "Pond", "6", "4 PM - 9 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [44, "Arapaima", "10000", "River", "6", "4 PM - 9 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [45, "Saddled bichir", "4000", "River", "4", "9 PM - 4 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [46, "Sturgeon", "10000", "River (Mouth)", "6", "All day", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [47, "Sea butterfly", "1000", "Sea", "1", "All day", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "(X)"],
-    [48, "Sea horse", "1100", "Sea", "1", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [49, "Clown fish", "650", "Sea", "1", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [50, "Surgeonfish", "1000", "Sea", "2", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [51, "Butterfly fish", "1000", "Sea", "2", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [52, "Napoleonfish", "10000", "Sea", "6", "4 AM - 9 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [53, "Zebra turkeyfish", "500", "Sea", "3", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [54, "Blowfish", "5000", "Sea", "3", "9 PM - 4 AM", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [55, "Puffer fish", "250", "Sea", "3", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [56, "Anchovy", "200", "Sea", "2", "4 AM - 9 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [57, "Horse mackerel", "150", "Sea", "2", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [58, "Barred knifejaw", "5000", "Sea", "3", "All day", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [59, "Sea bass", "400", "Sea", "5", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [60, "Red snapper", "3000", "Sea", "4", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [61, "Dab", "300", "Sea", "3", "All day", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)"],
-    [62, "Olive flounder", "800", "Sea", "5", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [63, "Squid", "500", "Sea", "3", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "(X)"],
-    [64, "Moray eel", "2000", "Sea", "Narrow", "All day", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-"],
-    [65, "Ribbon eel", "600", "Sea", "Narrow", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [66, "Tuna", "7000", "Pier", "6", "All day", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [67, "Blue marlin", "10000", "Pier", "6", "All day", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "-", "(X)", "(X)"],
-    [68, "Giant trevally", "4500", "Pier", "5", "All day", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [69, "Mahi-mahi", "6000", "Pier", "5", "All day", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [70, "Ocean sunfish", "4000", "Sea", "6 (Fin)", "4 AM - 9 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [71, "Ray", "3000", "Sea", "5", "4 AM - 9 PM", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-"],
-    [72, "Saw shark", "12000", "Sea", "6 (Fin)", "4 PM - 9 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [73, "Hammerhead shark", "8000", "Sea", "6 (Fin)", "4 PM - 9 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [74, "Great white shark", "15000", "Sea", "6 (Fin)", "4 PM - 9 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [75, "Whale shark", "13000", "Sea", "6 (Fin)", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [76, "Suckerfish", "1500", "Sea", "4 (Fin)", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [77, "Football fish", "2500", "Sea", "4", "4 PM - 9 AM", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [78, "Oarfish", "9000", "Sea", "6", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)"],
-    [79, "Barreleye", "15000", "Sea", "2", "9 PM - 4 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [80, "Coelacanth", "15000", "Sea (Rainy Days)", "6", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"]
-];
-
-/* allBugs indexes
-0 - number
-1 - name
-2 - value
-3 - location
-4 - time
-5-16 - months
-*/
-const allBugs = [
-    [1, "Common butterfly", "160", "Flying", "4 AM - 7 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [2, "Yellow butterfly", "160", "Flying", "4 AM - 7 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "-", "-"],
-    [3, "Tiger butterfly", "240", "Flying", "4 AM - 7 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [4, "Peacock butterfly", "2500", "Flying by Hybrid Flowers", "4 AM - 7 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-"],
-    [5, "Common bluebottle", "300", "Flying", "4 AM - 7 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [6, "Paper kite butterfly", "1000", "Flying", "8 AM - 7 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [7, "Great purple emperor", "3000", "Flying", "4 AM - 7 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [8, "Monarch butterfly", "140", "Flying", "4 AM - 5 PM", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [9, "Emperor butterfly", "4000", "Flying", "5 PM - 8 AM", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)"],
-    [10, "Agrias butterfly", "3000", "Flying", "8 AM - 5 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [11, "Rajah Brookes birdwing", "2500", "Flying", "8 AM - 5 PM", "(X)", "(X)", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)"],
-    [12, "Queen Alexandras birdwing", "4000", "Flying", "8 AM - 4 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [13, "Moth", "130", "Flying by Light", "7 PM - 4 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [14, "Atlas moth", "3000", "On Trees", "7 PM - 4 AM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [15, "Madagascan sunset moth", "2500", "Flying", "8 AM - 4 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [16, "Long locust", "200", "On the Ground", "8 AM - 7 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [17, "Migratory locust", "600", "On the Ground", "8 AM - 7 PM", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-"],
-    [18, "Rice grasshopper", "160", "On the Ground", "8 AM - 7 PM", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-"],
-    [19, "Grasshopper", "160", "On the Ground", "8 AM - 5 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [20, "Cricket", "130", "On the Ground", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [21, "Bell cricket", "430", "On the Ground", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-"],
-    [22, "Mantis", "430", "On Flowers", "8 AM - 5 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [23, "Orchid mantis", "2400", "On Flowers (White)", "8 AM - 5 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [24, "Honeybee", "200", "Flying", "8 AM - 5 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-"],
-    [25, "Wasp", "2500", "Shaking Trees", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [26, "Brown cicada", "250", "On Trees", "8 AM - 5 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [27, "Robust cicada", "300", "On Trees", "8 AM - 5 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [28, "Giant cicada", "500", "On Trees", "8 AM - 5 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [29, "Walker cicada", "400", "On Trees", "8 AM - 5 PM", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-"],
-    [30, "Evening cicada", "550", "On Trees", "4 AM - 8 AM & 4 PM - 7 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [31, "Cicada shell", "10", "On Trees", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [32, "Red dragonfly", "180", "Flying", "8 AM - 7 PM", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-"],
-    [33, "Darner dragonfly", "230", "Flying", "8 AM - 5 PM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [34, "Banded dragonfly", "4500", "Flying", "8 AM - 5 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [35, "Damselfly", "500", "Flying", "All day", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [36, "Firefly", "300", "Flying", "7 PM - 4 AM", "-", "-", "-", "-", "-", "(X)", "-", "-", "-", "-", "-", "-"],
-    [37, "Mole cricket", "500", "Underground", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [38, "Pondskater", "130", "On Ponds and Rivers", "8 AM - 7 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [39, "Diving beetle", "800", "On Ponds and Rivers", "8 AM - 7 PM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [40, "Giant water bug", "2000", "On Ponds and Rivers", "7 PM - 8 AM", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [41, "Stinkbug", "120", "On Flowers", "All day", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [42, "Man-faced stink bug", "1000", "On Flowers", "7 PM - 8 AM", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [43, "Ladybug", "200", "On Flowers", "8 AM - 5 PM", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "(X)", "-", "-"],
-    [44, "Tiger beetle", "1500", "On the Ground", "All day", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [45, "Jewel beetle", "2400", "On Tree Stumps", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [46, "Violin beetle", "450", "On Tree Stumps", "All day", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [47, "Citrus long-horned beetle", "350", "On Tree Stumps", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [48, "Rosalia batesi beetle", "3000", "On Tree Stumps", "All day", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [49, "Blue weevil beetle", "800", "On Trees (Coconut?)", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [50, "Dung beetle", "3000", "On the Ground (rolling snowballs)", "All day", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "-", "(X)"],
-    [51, "Earth-boring dung beetle", "300", "On the Ground", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [52, "Scarab beetle", "10000", "On Trees", "11 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [53, "Drone beetle", "200", "On Trees", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [54, "Goliath beetle", "8000", "On Trees (Coconut)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [55, "Saw stag", "2000", "On Trees", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [56, "Miyama stag", "1000", "On Trees", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [57, "Giant stag", "10000", "On Trees", "11 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [58, "Rainbow stag", "6000", "On Trees", "7 PM - 8 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [59, "Cyclommatus stag", "8000", "On Trees (Coconut)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [60, "Golden stag", "12000", "On Trees (Coconut)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [61, "Giraffe stag", "12000", "On Trees (Coconut?)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [62, "Horned dynastid", "1350", "On Trees", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [63, "Horned atlas", "8000", "On Trees (Coconut)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [64, "Horned elephant", "8000", "On Trees (Coconut)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [65, "Horned hercules", "12000", "On Trees (Coconut)", "5 PM - 8 AM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-", "-"],
-    [66, "Walking stick", "600", "On Trees", "4 AM - 8 AM & 5 PM - 7 PM", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [67, "Walking leaf", "600", "Under Trees Disguised as Leafs", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [68, "Bagworm", "600", "Shaking Trees", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [69, "Ant", "80", "On rotten food", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [70, "Hermit crab", "1000", "Beach disguised as Shells", "7 PM - 8 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [71, "Wharf roach", "200", "On Beach Rocks", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [72, "Fly", "60", "On Trash Items", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [73, "Mosquito", "130", "Flying", "5 PM - 4 AM", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [74, "Flea", "70", "Villager's Heads", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [75, "Snail", "250", "On Rocks (Rain)", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [76, "Pill bug", "250", "Hitting Rocks", "11 PM - 4 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [77, "Centipede", "300", "Hitting Rocks", "4 PM - 11 PM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [78, "Spider", "480", "Shaking Trees", "7 PM - 8 AM", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [79, "Tarantula", "8000", "On the Ground", "7 PM - 4 AM", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [80, "Scorpion", "8000", "On the Ground", "7 PM - 4 AM", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"]
-];
-
-const allDeep = [
-    [1, "Seaweed", "NH-Icon-seaweed.png", "600", "Large", "Stationary", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)"],
-    [2, "Sea grapes", "NH-Icon-seagrapes.png", "900", "Small", "Stationary", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [3, "Sea cucumber", "NH-Icon-seacucumber.png", "500", "Medium", "Slow consistent movement", "All day", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [4, "Sea pig", "NH-Icon-seapig.png", "10,000", "Small", "Quick long lunges", "4pm - 9am", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [5, "Sea star", "NH-Icon-seastar.png", "500", "Small", "Slow short lunges", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [6, "Sea urchin", "NH-Icon-seaurchin.png", "1,700", "Small", "Slow consistent movement", "All day", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [7, "Slate pencil urchin", "NH-Icon-slatepencilurchin.png", "2,000", "Medium", "Moderate consistent movement", "4pm - 9am", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [8, "Sea anemone", "NH-Icon-seaanemone.png", "500", "Large", "Stationary", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [9, "Moon jellyfish", "NH-Icon-moonjellyfish.png", "600", "Small", "Slow consistent movement", "All day", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [10, "Sea slug", "NH-Icon-seaslug.png", "600", "Tiny", "Slow consistent movement", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [11, "Pearl oyster", "NH-Icon-pearloyster.png", "2,800", "Small", "Moderate long lunges", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [12, "Mussel", "NH-Icon-mussel.png", "1,500", "Small", "Slow consistent movement", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [13, "Oyster", "NH-Icon-oyster.png", "1,100", "Small", "Moderate short lunges", "All day", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [14, "Scallop", "NH-Icon-scallop.png", "1,200", "Medium", "Slow long lunges", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [15, "Whelk", "NH-Icon-whelk.png", "1,000", "Small", "Slow consistent movement", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [16, "Turban shell", "NH-Icon-turbanshell.png", "1,000", "Small", "Slow", "All day", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [17, "Abalone", "NH-Icon-abalone.png", "2,000", "Medium", "Moderate consistent movement", "4pm - 9am", "(X)", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [18, "Gigas giant clam", "NH-Icon-gigasgiantclam.png", "15,000", "Huge", "Quick long lunges", "All day", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [19, "Chambered nautilus", "NH-Icon-chamberednautilus.png", "1,800", "Medium", "Slow", "4pm - 9am", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [20, "Octopus", "NH-Icon-octopus.png", "1,200", "Medium", "Moderate long lunges", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [21, "Umbrella octopus", "NH-Icon-umbrellaoctopus.png", "6,000", "Small", "Quick long lunges", "All day", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "(X)", "(X)", "(X)", "-"],
-    [22, "Vampire squid", "NH-Icon-vampiresquid.png", "10,000", "Medium", "Quick long lunges", "5pm - 9am", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [23, "Firefly squid", "NH-Icon-fireflysquid.png", "1,400", "Tiny", "Slow", "9pm - 4am", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-"],
-    [24, "Gazami crab", "NH-Icon-gazamicrab.png", "2,200", "Medium", "Moderate long lunges", "All day", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-"],
-    [25, "Dungeness crab", "NH-Icon-dungenesscrab.png", "1,900", "Medium", "Moderate consistent movement", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [26, "Snow crab", "NH-Icon-snowcrab.png", "6,000", "Large", "Quick short lunges", "All day", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [27, "Red king crab", "NH-Icon-redkingcrab.png", "8,000", "Large", "Quick", "All day", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)"],
-    [28, "Acorn barnacle", "NH-Icon-acornbarnacle.png", "600", "Tiny", "Stationary", "All day", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [29, "Spider crab", "NH-Icon-spidercrab.png", "12,000", "Huge", "Quick", "All day", "-", "-", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "-"],
-    [30, "Tiger prawn", "NH-Icon-tigerprawn.png", "3,000", "Small", "Moderate consistent movement", "4pm - 9am", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [31, "Sweet shrimp", "NH-Icon-sweetshrimp.png", "1,400", "Small", "Slow", "4pm - 9am", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)"],
-    [32, "Mantis shrimp", "NH-Icon-mantisshrimp.png", "2,500", "Small", "Quick short lunges", "4pm - 9am", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)"],
-    [33, "Spiny lobster", "NH-Icon-spinylobster.png", "5,000", "Large", "Fast", "9pm - 4am", "-", "-", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)"],
-    [34, "Lobster", "NH-Icon-lobster.png", "4,500", "Large", "Quick", "All day", "(X)", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-", "-", "-", "(X)"],
-    [35, "Giant isopod", "NH-Icon-giantisopod.png", "12,000", "Medium", "Quick long lunges", "9am - 4pm & 9pm - 4am", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [36, "Horseshoe Crab", "NH-Icon-horseshoecrab.png", "2,500", "Medium", "Quick short lunges", "9pm - 4am", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)", "-", "-", "-"],
-    [37, "Sea pineapple", "NH-Icon-seapineapple.png", "1,500", "Small", "Slow long lunges", "All day", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-", "-", "-"],
-    [38, "Spotted garden eel", "NH-Icon-spottedgardeneel.png", "1,100", "Small", "Slow consistent movement", "4am - 9pm", "-", "-", "-", "-", "(X)", "(X)", "(X)", "(X)", "(X)", "(X)", "-", "-"],
-    [39, "Flatworm", "NH-Icon-flatworm.png", "700", "Tiny", "Slow short movement", "4pm - 9am", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "-", "-", "-"],
-    [40, "Venus flower basket", "NH-Icon-venusflowerbasket.png", "5,000", "Medium", "Quick long lunges", "All day", "(X)", "(X)", "-", "-", "-", "-", "-", "-", "-", "(X)", "(X)", "(X)"]
-];
+let allFish = northFish;
+let allBugs = northBugs;
+let allDeep = northDeep;
 
 var currentMonth = new Date().getMonth();
 var currentHours = new Date().getHours();
@@ -245,6 +23,20 @@ makeSelectionTables();
 document.getElementById("month").innerText = checkMonth(currentMonth);
 generateMonthSelector();
 fishMode();
+
+// Collapsible Menus
+var coll = document.getElementsByClassName("collapsible");
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
+}
 
 function makeSelectionTables() {
     // Create fish selection table
@@ -283,19 +75,6 @@ function deepMode() {
     fishTable.hidden = true;
     deepTable.hidden = false;
     submitType = "deep";
-}
-
-var coll = document.getElementsByClassName("collapsible");
-for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
 }
 
 function checkMonth(month) {
@@ -341,9 +120,7 @@ function checkMonth(month) {
 function generateSelectionTable(table, type, limit) {
     if (type == "fish") allCritters = allFish;
     else if (type == "bug") allCritters = allBugs;
-    else if (type == "deep") {
-        allCritters = allDeep;
-    }
+    else if (type == "deep") allCritters = allDeep;
 
     for (var row = 0; row < 5; row++) {
         let thisRow = table.insertRow();
@@ -351,7 +128,7 @@ function generateSelectionTable(table, type, limit) {
         for (var col = row; col < limit; col = col + 5) {
             //console.log(allCritters[col][1])
             let td = thisRow.insertCell();
-            let critterName = allCritters[col][1];
+            let critterName = allCritters[col][0];
             let text = document.createTextNode(critterName);
             td.appendChild(text);
             td.id = type + col;
@@ -363,7 +140,7 @@ function generateSelectionTable(table, type, limit) {
 function setBackgrounds(type, limit) {
     for (var i = 0; i < limit; i++) {
         // Get critter name
-        let critterName = allCritters[i][1];
+        let critterName = allCritters[i][0];
 
         // Get critter's cell
         let thisCritter = document.getElementById(type + i);
@@ -500,18 +277,18 @@ function getNeededCritters() {
     // Set arrays and monthOffset
     if (submitType == "fish") {
         allCritters = allFish;
-        monthOffset = 6;
+        monthOffset = 5;
     } else if (submitType == "bug") {
         allCritters = allBugs;
-        monthOffset = 5;
+        monthOffset = 4;
     } else if (submitType == "deep") {
         allCritters = allDeep;
-        monthOffset = 7;
+        monthOffset = 5;
     }
 
     for (i = 0; i < allCritters.length; i++) {
         if (myCritters.includes(submitType + i)) {
-            console.log("Already have " + allCritters[i][1]);
+            console.log("Already have " + allCritters[i][0]);
         } // Checks the column associated with this month 
         else if (allCritters[i][currentMonth + monthOffset] == "(X)") {
             neededCritters.push(submitType + i);
@@ -573,34 +350,14 @@ function generateOutputTableBody() {
         let number, name, image, value, loc, hours, months;
         let size = 0;
 
-        // Sets critter info
-        if (submitType == "fish") {
-            number = allCritters[thisCritter][0];
-            name = allCritters[thisCritter][1];
-            image = "";
-            value = allCritters[thisCritter][2];
-            loc = allCritters[thisCritter][3];
-            size = allCritters[thisCritter][4];
-            hours = allCritters[thisCritter][5];
-            months = printMonths(number - 1);
-        } else if (submitType == "bug") {
-            number = allCritters[thisCritter][0];
-            name = allCritters[thisCritter][1];
-            image = "";
-            value = allCritters[thisCritter][2];
-            loc = allCritters[thisCritter][3];
-            hours = allCritters[thisCritter][monthOffset - 1];
-            months = printMonths(number - 1);
-        } else if (submitType == "deep") {
-            number = allCritters[thisCritter][0];
-            name = allCritters[thisCritter][1];
-            image = "";
-            value = allCritters[thisCritter][3];
-            loc = allCritters[thisCritter][4];
-            size = allCritters[thisCritter][5];
-            hours = allCritters[thisCritter][monthOffset - 1];
-            months = printMonths(number - 1);
-        }
+        number = parseInt(thisCritter) + 1;
+        name = allCritters[thisCritter][0];
+        image = "";
+        value = allCritters[thisCritter][1];
+        loc = allCritters[thisCritter][2];
+        size = allCritters[thisCritter][3];
+        hours = allCritters[thisCritter][monthOffset - 1];
+        months = printMonths(number - 1);
 
         hours = checkTime(name, hours);
 
@@ -683,17 +440,17 @@ function deleteFish() {
 }
 
 function generateMonthSelector() {
-    let ul = document.getElementById("monthMenu");
+    let menu = document.getElementById("monthMenu");
 
     for (i = 0; i < 12; i++) {
         let month = checkMonth(i).substring(0, 3);
 
-        var li = document.createElement("div");
-        li.appendChild(document.createTextNode(month));
-        li.setAttribute("id", "month" + i);
-        li.setAttribute("class", "col btn btn-info");
+        var monthButton = document.createElement("div");
+        monthButton.appendChild(document.createTextNode(month));
+        monthButton.setAttribute("id", "month" + i);
+        monthButton.setAttribute("class", "col btn btn-secondary");
 
-        ul.appendChild(li);
+        menu.appendChild(monthButton);
     }
 
     addMonthListeners();
@@ -713,7 +470,7 @@ function setMonth(month) {
         let button = document.getElementById("month" + month);
 
         for (i = 0; i < 12; i++) {
-            document.getElementById("month" + i).style.backgroundColor = "#17a2b8";
+            document.getElementById("month" + i).style.backgroundColor = "#6c757d";
         }
 
         button.style.backgroundColor = "#28a745";
@@ -752,5 +509,22 @@ function checkTime(name, hours) {
     } else {
         console.log(name + " NA " + hours);
         return hours;
+    }
+}
+
+function setHemisphere(hemisphere) {
+   
+    if (hemisphere === "north") {
+        allFish = northFish;
+        allBugs = northBugs;
+        allDeep = northDeep;
+        document.querySelector("#north").style.backgroundColor = "#28a745";
+        document.querySelector("#south").style.backgroundColor = "#6c757d";
+    } else if (hemisphere === "south") {
+        allFish = southFish;
+        allBugs = southBugs;
+        allDeep = southDeep;
+        document.querySelector("#north").style.backgroundColor = "#6c757d";
+        document.querySelector("#south").style.backgroundColor = "#28a745";
     }
 }

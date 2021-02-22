@@ -11,50 +11,14 @@ h1 {
 
 h2 {
     font-size:1.4rem;
-    padding: 0px;
+    margin: 0.5rem 0;
 }
 
 a {
     color: lightblue;
 }
 
-/* Choose Critter Type */
-#buttons {
-    margin-bottom: 1em;
-}
-
-/* Critter Table */
-#fish {
-    width: 95%;
-}
-
-#month {
-    color: white;
-    font-weight: bold;
-}
-
-table {
-    width: 100%;
-    border: 2px solid white;
-    border-collapse: collapse;
-}
-
-th,td {
-    padding: 5px;
-    border: 1px solid gray;
-    text-align: center;
-    background-color: black;
-}
-
-th {
-    font-size:1.2rem;
-    background-color: #041f32;
-}
-
-#bugth {
-    background-color: #1e4003;
-}
-
+/* Buttons */
 button {
     background-color: #003853; /* Green */;
     width: 100%;
@@ -67,70 +31,56 @@ button {
     font-size: 16px;
 }
 
-#getBugs {
-    background-color: darkgreen;
+#typeSelect {
+    margin-bottom: 1em;
+}
+
+#options {
+    background-color: #0478a1;
+}
+
+/* month, hemisphere text */
+span {
+    color: white;
+    font-weight: bold;
+}
+
+/* tables */
+table {
+    width: 100%;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
+th,td {
+    padding: 5px;
+    border: 1px solid gray;
+    text-align: center;
+
 }
 
 th {
+    font-size:1.2rem;
     background-color: darkslategray;
-}
-
-#clearFish {
-    background-color: #0478a1;
-}
-
-#clearBugs {
-    background-color: darkolivegreen;
-}
-
-td:hover {
-    background-color: #0478a1;
 }
 
 td {
-    height: 50px;
     width: 6.25%;
     background-position: center;
     background-repeat: no-repeat; /* Do not repeat the image */
+    height: 50px;
+    background-color: black;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    text-align: center;
-    white-space: nowrap;
+td:hover {
+    background-color: darkslategray;
 }
 
-li {
-    display: inline-block;
-    margin: 2px;
-    padding: 8px 16px;
-    background-color: #ccc;
-    border: none;
-    outline: 0;
-    color: black;
-}
-
-li:hover {
-    background-color: #eee;
-}
-
-
-.output0 {
-    width: 1%;
-}
-
+/* Style the collapsible content. Note: hidden by default */
 .disappearing {
     background-color: dark;
 }
-
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-    background-color: darkslategray;
-}
   
-  /* Style the collapsible content. Note: hidden by default */
 .content {
     text-align: center;
     padding: 5px;
