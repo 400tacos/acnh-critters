@@ -20,7 +20,6 @@ a {
 
 /* Buttons */
 button {
-    background-color: #003853; /* Green */;
     width: 100%;
     border: none;
     color: white;
@@ -29,6 +28,14 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+#getNeeded {
+    background-color: #003853;
+}
+
+#getAll {
+    background-color: #01547e;
 }
 
 #typeSelect {

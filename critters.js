@@ -22,7 +22,7 @@ var neededCritters = [];
 makeSelectionTables();
 document.getElementById("month").innerText = checkMonth(currentMonth);
 generateMonthSelector();
-fishMode();
+bugMode();
 
 // Collapsible Menus
 var coll = document.getElementsByClassName("collapsible");
@@ -205,7 +205,7 @@ function checkLocalStorage() {
     if (!localStorage.getItem("myCritters")) {
         console.log("Nothing stored.");
     } else {
-        console.log("Found stuff!");
+        console.log("Found stored critters.");
         let critters = localStorage.getItem("myCritters");
         parseStored(critters);
     }
@@ -213,7 +213,6 @@ function checkLocalStorage() {
 
 function parseStored(critters) {
     // Splits loaded data into a temporary array
-    console.log(critters);
     let tempArray = critters.split(",");
 
     for (item in tempArray) {
@@ -229,33 +228,14 @@ function parseStored(critters) {
         }
 
         critter = critter.replace(type, "");
-        console.log(type + critter);
-
         myCritters.push(type + critter);
-        console.log(myCritters);
         sortCritters();
 
         // Colors the box
         let button = document.getElementById(type + critter);
         button.style.backgroundColor = selectedColor;
     }
-
-    /* Pushes everything from the temporary array
-    for (i = 0; i < tempArray.length; i++) {
-        let newCritter = parseInt(tempArray[i]);
-        if (isNaN(newCritter) == false) {
-            myCritters.push(type+newCritter);
-        }
-    }
-
-    // Colors the boxes
-    for (i = 0; i < myCritters.length; i++) {
-        let button = document.getElementById(myCritters[i]);
-        if (myCritters[i] !== "") {
-            button.style.backgroundColor = selectedColor;
-        }
-    }
-    */
+    console.log(`Loaded ${myCritters}`);
 }
 
 // Run when user does some action
@@ -267,6 +247,32 @@ function clickBox() {
 function saveChoices() {
     let str = myCritters.toString();
     localStorage.setItem("myCritters", str);
+}
+
+function getAll() {
+    // Clear table and neededCritters array
+    clearOutputTable();
+    neededCritters = [];
+
+    // Set arrays and monthOffset
+    if (submitType == "fish") {
+        allCritters = allFish;
+        monthOffset = 5;
+    } else if (submitType == "bug") {
+        allCritters = allBugs;
+        monthOffset = 4;
+    } else if (submitType == "deep") {
+        allCritters = allDeep;
+        monthOffset = 5;
+    }
+
+    for (i = 0; i < allCritters.length; i++) {
+        if (allCritters[i][currentMonth + monthOffset] == "(X)") {
+            neededCritters.push(submitType + i);
+        }
+    }
+    generateOutputTableHead();
+    generateOutputTableBody();
 }
 
 function getNeededCritters() {
@@ -296,7 +302,7 @@ function getNeededCritters() {
             //console.log(allCritters[i][1] + " needed, but not currently available.");
         }
     }
-    console.log(neededCritters);
+    //console.log(neededCritters);
     generateOutputTableHead();
     generateOutputTableBody();
 }
@@ -359,7 +365,9 @@ function generateOutputTableBody() {
         hours = allCritters[thisCritter][monthOffset - 1];
         months = printMonths(number - 1);
 
-        hours = checkTime(name, hours);
+        if (checkTime(name, hours) === true) {
+            hours += "*";
+        }
 
         let critData = [number, name, image, value, loc, hours, months];
         if (submitType != "bug") {
@@ -379,10 +387,15 @@ function generateOutputTableBody() {
 
             // Check if times col
             let timeCol = false;
-            if (submitType == "bug" && col == 5) timeCol = true;
-            else if (col == 6) timeCol = true;
+            if (submitType == "bug"){
+                if (col == 5) timeCol = true;
+                else timeCol = false
+            } else if (col == 6) timeCol = true;
+
+            // Color if hours ends in star, then delete the star
             if (timeCol && hours.endsWith("*")) {
                 td.style.backgroundColor = "darkgreen";
+                td.innerText = td.innerText.slice(0, -1)
             }
 
             // Check if months col
@@ -478,38 +491,70 @@ function setMonth(month) {
 }
 
 function checkTime(name, hours) {
-    if (hours == "All day") {
-        return hours + "*";
-        // Fish
-    } else if (hours == "9 AM - 4 PM" && (9 <= currentHours && currentHours < 16)) {
-        return hours + "*";
-    } else if (hours == "9 PM - 4 AM" && (21 <= currentHours || currentHours < 4)) {
-        return hours + "*";
-    } else if (hours == "4 PM - 9 AM" && (16 <= currentHours || currentHours < 9)) {
-        return hours + "*";
-        // Bugs
-    } else if (hours == "4 AM - 7 PM" && (4 <= currentHours && currentHours < 19)) {
-        return hours + "*";
-    } else if (hours == "8 AM - 4 PM" && (8 <= currentHours && currentHours < 16)) {
-        return hours + "*";
-    } else if (hours == "8 AM - 5 PM" && (8 <= currentHours && currentHours < 17)) {
-        return hours + "*";
-    } else if (hours == "8 AM - 7 PM" && (8 <= currentHours && currentHours < 19)) {
-        return hours + "*";
-    } else if (hours == "5 PM - 8 AM" && (17 <= currentHours || currentHours < 8)) {
-        return hours + "*";
-    } else if (hours == "7 PM - 4 AM" && (19 <= currentHours || currentHours < 4)) {
-        return hours + "*";
-    } else if (hours == "4 PM - 11 PM" && (16 <= currentHours && currentHours < 23)) {
-        return hours + "*";
-    } else if (hours == "7 PM - 8 AM" && (19 <= currentHours || currentHours < 8)) {
-        return hours + "*";
-    } else if (hours == "4 AM - 8 AM & 4 PM - 7 PM" && (4 <= currentHours < 8 || 16 <= currentHours < 19)) {
-        return hours + "*";
-    } else {
-        console.log(name + " NA " + hours);
-        return hours;
+    // TODO: Make this easier lol
+    let startTime, endTime;
+
+    // Temporary workaround - avoid &s in hours col
+    if (hours.includes("&") || hours.includes(",")) {
+        return false;
+    } else if (hours.includes("All day")) {
+        return true;
     }
+
+    // Set start time
+    if (hours.includes("9 AM -")) {
+        startTime = 9;
+    } else if (hours.includes("4 PM -")) {
+        startTime = 16;
+    } else if (hours.includes("4 AM -")) {
+        startTime = 4;
+    } else if (hours.includes("5 PM -")) {
+        startTime = 17;
+    } else if (hours.includes("7 PM -")) {
+        startTime = 19;
+    } else if (hours.includes("8 AM -")) {
+        startTime = 8;
+    } else if (hours.includes("9 PM -")) {
+        startTime = 21;
+    } else if (hours.includes("11 PM -")) {
+        startTime = 23;
+    }
+
+    // Set end time
+    if (hours.includes("- 4 PM")) {
+        endTime = 16;
+    } else if (hours.includes("- 9 AM")) {
+        endTime = 33;
+    } else if (hours.includes("- 9 PM")) {
+        endTime = 21;
+    } else if (hours.includes("- 7 PM")) {
+        endTime = 19;
+    } else if (hours.includes("- 8 AM")) {
+        endTime = 32;
+    } else if (hours.includes("- 4 AM")) {
+        endTime = 28;
+    } else if (hours.includes("- 5 PM")) {
+        endTime = 17;
+    } else if (hours.includes("- 11 PM")) {
+        endTime = 23;
+    }
+
+    // Check if between correct hours
+    if (startTime < currentHours && currentHours < endTime){
+        //console.log(`O ${name}: ${startTime} ${currentHours} ${endTime}`)
+        return true;
+    } else if (currentHours < endTime-24){
+        //console.log(`O ${name}: ${startTime} ${currentHours} ${endTime-24} (night)`)
+        return true;
+    } else if (name === "Pill bug"){ //Starts at weird time
+        if (currentHours == 23 || currentHours < endTime){
+            //console.log(`O ${name}: yes`)
+            return true;
+        }
+    }
+
+    //console.log(`X ${name}: ${startTime} ${currentHours} ${endTime}`)
+    return false;
 }
 
 function setHemisphere(hemisphere) {
